@@ -22,4 +22,4 @@ iret = bitshares.wallet.getAccounts()
 print(iret)
 
 bitshares.transfer("gate-io-bts66", "10", "BTS", "2b4420ff4dfa4b52", account="masun001")
-# bitshares.wallet.lock("8RRjNEZMRroz8rCpLkcjrotKtXU79y1J")
+

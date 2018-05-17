@@ -1,31 +1,37 @@
-from flask import Flask
+import json
+
+from flask import Flask, jsonify
 from flask import request
 
 app = Flask(__name__)
+app.config["JSON\_AS\_ASCII"] = False
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return '<h1>Home</h1>'
-
-@app.route('/signin', methods=['GET'])
-def signin_form():
-    return '''<form action="/signin" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">Sign In</button></p>
-              </form>'''
-
-@app.route('/signin', methods=['POST'])
-def signin():
-    # 需要从request对象读取表单内容：
-    if request.form['username']=='admin' and request.form['password']=='password':
-        return '<h3>Hello, admin!</h3>'
-    return '<h3>Bad username or password.</h3>'
+    return '<h1>Welcome to BTS Service</h1>'
 
 @app.route("/ok", methods=['GET'])
 def ok():
     return "ok"
 
+@app.route("/captial/withdraw", methods=['POST'])
+def withdraw():
+
+    data = request.json
+
+    to = data['to']
+    amount = data['amount']
+    asset = data['asset']
+    memo = data['memo']
+    print("data:", data)
+
+    result_msg = {
+        "code": 0,
+        "msg": "操作成功"
+    }
+
+    return jsonify(result_msg)
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
