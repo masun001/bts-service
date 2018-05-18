@@ -19,7 +19,7 @@ if not is_created:
     bitshares.wallet.create(password)
 
 
-def transfer(to, amount, asset, memo, fromAccount):
+def transfer(to, amount, asset, memo, from_account):
     print("password:", password)
     # only for transfer use.on_line_account_private_key
     online_fund_private_key = conf.get('wallet', 'on_line_wallet_private_key')
@@ -32,7 +32,7 @@ def transfer(to, amount, asset, memo, fromAccount):
     except Exception:
         pass
 
-    bitshares.transfer(to, amount, asset, memo, account=fromAccount)
+    bitshares.transfer(to, amount, asset, memo, account=from_account)
 
     # bitshares.wallet.lock(password)
 
